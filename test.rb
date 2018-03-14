@@ -1,5 +1,5 @@
 class Test
-  attr_reader :points
+  attr_reader :points, :questions
   
   INITIAL_POINT = 0
 
