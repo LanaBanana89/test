@@ -1,4 +1,7 @@
 class Test
+  attr_reader :points
+  
+  INITIAL_POINT = 0
 
   def initialize
     @questions = [
@@ -35,33 +38,24 @@ class Test
       '16. Охотнее ли Вы излагаете свою точку зрения (мнение, оценку) в письменной ' \
       'форме, чем в устной?'
     ]
-    @points = 0
-  end
-
-  def run_test
-    for item in @questions do
-      puts item
-      user_answer = nil
-
-      until ["0", "1", "2"].include? user_answer
-        puts "Введите 0 - No, 1 - Sometimes, 2 - Yes"
-        user_answer = STDIN.gets.chomp
-      end
-
-      if user_answer == "2"
-        @points += 2
-      elsif user_answer == "1"
-        @points += 1
-      end
+    @points = INITIAL_POINT
+  end  
+ 
+  def user_answer
+    user_answer = nil
+    until ["0", "1", "2"].include?(user_answer)
+      puts "Введите 0 - No, 1 - Sometimes, 2 - Yes"
+      user_answer = STDIN.gets.chomp
     end
   end
 
-  def point
-    @points
+  def scoring_points
+    for item in @questions do
+      puts item
+      answer = user_answer
+      @points += 2 if answer == "2"
+      @points += 1 if answer == "1"
+    end
   end
-
-  def questions
-    @questions
-  end
-
 end
+
