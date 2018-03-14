@@ -1,5 +1,4 @@
 class ResultPrinter
-
   def initialize
     @result = [
       #30-32 очко.
@@ -44,13 +43,18 @@ class ResultPrinter
       'подумайте о своем здоровье – такой стиль жизни не проходит бесследно.'
     ]
   end
-
-  def print_result(points,name)
-    if name == nil
-      name = "Незнакомец"
+  
+  def your_name?(name)
+    if name == nil || name == ""
+      @name = "Незнакомец"
+    else
+      @name = name
     end
+  end
 
-    puts "\n#{name}"
+  def print_result(points, name)
+
+    puts "\n#{your_name?(name)}\n"
     case points
     when (30..32) then puts @result[0]
     when (25..29) then puts @result[1]
